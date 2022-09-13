@@ -3,9 +3,14 @@ require("dotenv").config();
 const SpotifyWebApi = require("spotify-web-api-node");
 const { storePlaylists } = require("./db/helper/playlists");
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 8080;
 const pool = require("./configs/db.config");
+const cors = require("cors");
+
+const PORT = process.env.PORT || 8080;
+
 const app = express();
+
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
