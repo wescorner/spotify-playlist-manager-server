@@ -37,6 +37,7 @@ module.exports = (pool) => {
       const { access_token, refresh_token } = data.body;
 
       res.cookie("access_token", access_token);
+      console.log("ACCESS TOKEN:", access_token);
       res.cookie("refresh_token", refresh_token);
 
       spotifyApi.setAccessToken(access_token);
