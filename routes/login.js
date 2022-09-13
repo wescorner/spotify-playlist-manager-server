@@ -5,7 +5,6 @@ const router = express.Router();
 const querystring = require("querystring");
 require("dotenv").config();
 const { spotifyApi } = require("../app");
-const { collapseTextChangeRangesAcrossMultipleVersions } = require("typescript");
 const { storePlaylists } = require("../db/helper/playlists");
 
 module.exports = (pool) => {

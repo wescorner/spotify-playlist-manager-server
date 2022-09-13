@@ -1,9 +1,7 @@
 const express = require("express");
 require("dotenv").config();
-const querystring = require("querystring");
 const SpotifyWebApi = require("spotify-web-api-node");
 const { storePlaylists } = require("./db/helper/playlists");
-const util = require("util");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8080;
 const pool = require("./configs/db.config");
