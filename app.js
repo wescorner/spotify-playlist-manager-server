@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-app.use(cors({ origin: "https://spotifyplaylistmanager.com", credentials: true }));
-app.use(cookieParser("aasdfads", { sameSite: "none", domain: "spotifyplaylistmanager.com" }));
+app.use(cors({ origin: "https://www.spotifyplaylistmanager.com", credentials: true }));
+app.use(cookieParser("aasdfads", { sameSite: "none", domain: ".spotifyplaylistmanager.com" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
