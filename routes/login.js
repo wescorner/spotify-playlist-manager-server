@@ -79,6 +79,11 @@ module.exports = (pool) => {
   router.get("/profile", (req, res) => {
     const spotifyApi = getSpotifyApi();
     const accessToken = req.cookies["access_token"];
+
+    if (!accessToken) {
+      return res.send({});
+    }
+
     spotifyApi.setAccessToken(accessToken);
 
     spotifyApi
