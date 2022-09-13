@@ -36,9 +36,9 @@ module.exports = (pool) => {
       const data = await spotifyApi.authorizationCodeGrant(code);
       const { access_token, refresh_token } = data.body;
 
-      res.cookie("access_token", access_token, { domain: ".spotifyplaylistmanager.com" });
+      res.cookie("access_token", access_token, { domain: "www.spotifyplaylistmanager.com" });
       console.log("ACCESS TOKEN:", access_token);
-      res.cookie("refresh_token", refresh_token, { domain: ".spotifyplaylistmanager.com" });
+      res.cookie("refresh_token", refresh_token, { domain: "www.spotifyplaylistmanager.com" });
 
       spotifyApi.setAccessToken(access_token);
       spotifyApi.setRefreshToken(refresh_token);
