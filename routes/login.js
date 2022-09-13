@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 const querystring = require("querystring");
 require("dotenv").config();
-const { spotifyApi } = require("../app");
+const { getSpotifyApi } = require("../app");
 const { storePlaylists } = require("../db/helper/playlists");
 
 module.exports = (pool) => {
@@ -27,12 +27,18 @@ module.exports = (pool) => {
   //Sets access token and refresh token after verification of spotify credentials
   router.get("/callback", async (req, res) => {
     try {
+      const spotifyApi = getSpotifyApi();
+
       const { code } = req.query;
       const profileInfo = [];
       const userPlaylists = [];
       //Inserts user details into database if they don't already exist
       const data = await spotifyApi.authorizationCodeGrant(code);
       const { access_token, refresh_token } = data.body;
+
+      res.cookie("access_token", access_token);
+      res.cookie("refresh_token", refresh_token);
+
       spotifyApi.setAccessToken(access_token);
       spotifyApi.setRefreshToken(refresh_token);
       const {
@@ -71,6 +77,10 @@ module.exports = (pool) => {
   });
 
   router.get("/profile", (req, res) => {
+    const spotifyApi = getSpotifyApi();
+    const accessToken = req.cookies["access_token"];
+    spotifyApi.setAccessToken(accessToken);
+
     spotifyApi
       .getMe()
       .then(({ body: { images, display_name, email, id } }) => {
