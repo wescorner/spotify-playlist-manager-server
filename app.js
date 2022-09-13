@@ -19,14 +19,12 @@ module.exports.spotifyApi = spotifyApi;
 
 //Separated Routes for each Resource
 const categoryRoutes = require("./routes/category");
-const indexRoutes = require("./routes/index");
 const playlistRoutes = require("./routes/playlist");
 const loginRoutes = require("./routes/login");
 const dashboardRoutes = require("./routes/dashboard");
 
 // Mount all resource routes
 app.use("/category", categoryRoutes(pool));
-app.use("/index", indexRoutes(pool));
 app.use("/playlist", playlistRoutes(pool));
 app.use("/login", loginRoutes(pool));
 app.use("/dashboard", dashboardRoutes(pool));
