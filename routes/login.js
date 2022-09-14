@@ -38,10 +38,14 @@ module.exports = (pool) => {
 
       res.cookie("access_token", access_token, {
         domain: "https://www.spotifyplaylistmanager.com",
+        sameSite: "none",
+        secure: true,
       });
       console.log("ACCESS TOKEN:", access_token);
       res.cookie("refresh_token", refresh_token, {
         domain: "https://www.spotifyplaylistmanager.com",
+        sameSite: "none",
+        secure: true,
       });
 
       spotifyApi.setAccessToken(access_token);
