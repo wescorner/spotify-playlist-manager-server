@@ -3,16 +3,12 @@
 
 const express = require("express");
 const router = express.Router();
-const { getSpotifyApi } = require("../app");
+const { spotifyApi } = require("../app");
 require("dotenv").config();
 
 module.exports = (pool) => {
   // Find out who the current user is and grab all their category data from the database
   router.get("/:id", (req, res) => {
-    const spotifyApi = getSpotifyApi();
-    const accessToken = req.cookies["access_token"];
-    spotifyApi.setAccessToken(accessToken);
-
     spotifyApi
       .getMe()
       .then((data) => {
@@ -38,10 +34,6 @@ module.exports = (pool) => {
   });
 
   router.get("/", (req, res) => {
-    const spotifyApi = getSpotifyApi();
-    const accessToken = req.cookies["access_token"];
-    spotifyApi.setAccessToken(accessToken);
-
     spotifyApi
       .getMe()
       .then((data) => {
@@ -74,10 +66,6 @@ module.exports = (pool) => {
     categoryInfo.push(req.body.categoryImage);
     categoryInfo.push(req.body.categoryDescription);
 
-    const spotifyApi = getSpotifyApi();
-    const accessToken = req.cookies["access_token"];
-    spotifyApi.setAccessToken(accessToken);
-
     spotifyApi
       .getMe()
       .then((data) => {
@@ -105,11 +93,6 @@ module.exports = (pool) => {
     const name = req.body.name;
     const image = req.body.image;
     const description = req.body.description;
-
-    const spotifyApi = getSpotifyApi();
-    const accessToken = req.cookies["access_token"];
-    spotifyApi.setAccessToken(accessToken);
-
     spotifyApi
       .getMe()
       .then((data) => {
@@ -135,11 +118,6 @@ module.exports = (pool) => {
   //delete category
   router.delete("/:id", (req, res) => {
     const categoryId = req.params.id;
-
-    const spotifyApi = getSpotifyApi();
-    const accessToken = req.cookies["access_token"];
-    spotifyApi.setAccessToken(accessToken);
-
     spotifyApi
       .getMe()
       .then((data) => {
