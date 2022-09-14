@@ -19,7 +19,7 @@ app.use(
     origin: "https://www.spotifyplaylistmanager.com",
   })
 );
-app.use(cookieParser({ sameSite: none }));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
