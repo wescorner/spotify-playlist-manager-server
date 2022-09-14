@@ -37,13 +37,13 @@ module.exports = (pool) => {
       const { access_token, refresh_token } = data.body;
 
       res.cookie("access_token", access_token, {
-        domain: "https://www.spotifyplaylistmanager.com",
+        domain: "spotifyplaylistmanager.com",
         sameSite: "none",
         secure: true,
       });
       console.log("ACCESS TOKEN:", access_token);
       res.cookie("refresh_token", refresh_token, {
-        domain: "https://www.spotifyplaylistmanager.com",
+        domain: "spotifyplaylistmanager.com",
         sameSite: "none",
         secure: true,
       });
