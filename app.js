@@ -11,10 +11,15 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-app.use(cors({ origin: "https://www.spotifyplaylistmanager.com", credentials: true }));
+app.set("trust proxy", 1);
+
 app.use(
-  cookieParser("aasdfads", { sameSite: "none", domain: "https://www.spotifyplaylistmanager.com" })
+  cors({
+    credentials: true,
+    origin: "https://www.spotifyplaylistmanager.com",
+  })
 );
+app.use(cookieParser({ sameSite: none }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
